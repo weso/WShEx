@@ -1,0 +1,26 @@
+PREFIX wd:  <http://www.wikidata.org/entity/>
+
+start = @<Researcher>
+
+<Researcher> {
+ :P31     [ :Q5 ]            ;
+ :P19     @<Place>          ;     
+ :P569    Time     ? ; 
+ :P108    @<Organization> 
+  {| :P580 Time ? , 
+     :P582 Time ?
+  |} * ;
+ :P166  @<Award>  
+  {| :P585  Time   ? , 
+     :P1706 @<Researcher> ?
+  |} *
+}
+<Place> { 
+ :P17 @<Country> 
+}
+<Organization> {}
+<Award> { 
+ :P17 @<Country> 
+}
+<Country> {}
+

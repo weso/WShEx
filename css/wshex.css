@@ -1,0 +1,15 @@
+.cols {
+    display: flex;
+  }
+  
+.column1 {
+    flex: 50%;
+  }
+
+.column2 {
+    flex: 50%;
+}  
+
+.caption {
+    text-align: center;
+}

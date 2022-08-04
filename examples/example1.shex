@@ -1,0 +1,7 @@
+PREFIX wd:  <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+    
+<Human> {
+ wdt:P31 [ wd:Q5 ]  
+}
+    

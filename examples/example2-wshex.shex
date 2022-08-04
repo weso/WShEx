@@ -1,0 +1,9 @@
+PREFIX wd:  <http://www.wikidata.org/entity/>
+
+<EnglishSite> {
+  :P856 .  {| :P407 [ :Q1860 ] |}
+}
+
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #000000;">&lt;EnglishSite&gt;</span></div></div>
+
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;EnglishSite&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P856 . &#160;{| </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P407 [ </span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q1860 ] |}</span></div><div><span style="color: #000000;">}</span></div><br></div>

@@ -1,0 +1,13 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX p: <http://www.wikidata.org/prop/>
+    
+<EnglishSite> {
+  p:P856 {
+    ps:P856 . 
+    pq:P407 [ wd:Q1860 ] 
+  }
+}
+    
+
