@@ -1,0 +1,8 @@
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+<Researcher> {
+ wdt:P31  [ wd:Q5 wd::Q43229 ] ;
+}
+
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;Researcher&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P31 &#160;[ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 </span><span style="color: #0000ff;">wd::</span><span style="color: #000000;">Q43229 ] ;</span></div><div><span style="color: #000000;">}</span></div><br></div>

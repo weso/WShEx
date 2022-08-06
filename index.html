@@ -16,7 +16,7 @@
           company: "WESO Research group",
           companyURL: "https://www.weso.es",
         }],
-        edDraftURI: "http://weso.es/wshex",
+        edDraftURI: "http://weso.es/wshex/",
         shortName: "wshex",
         localBiblio: {
             "SHEX": {
@@ -44,7 +44,7 @@
     <section>
         <h2>Introduction</h2>
         <p>
-            WShEx is based on <a href="http://shex.io">Shape Expressions</a> and uses a similar syntax. The main difference is that while ShEx describes and validates RDF, WShEx describes and validates Wikibase entities.
+            WShEx is based on <a href="http://shex.io">Shape Expressions</a> ([[SHEX]]) and uses a similar syntax. The main difference is that while ShEx describes and validates RDF, WShEx describes and validates Wikibase entities.
         </p>
         <p><a href="https://wikiba.se/">Wikibase</a> is the software toolkit on which <a href="https://www.wikidata.org/">Wikidata</a> has been implemented. 
         Although the Wikibase data model offers an RDF serialization, it contains several 
@@ -163,9 +163,26 @@ start = @<Researcher>
 </section>
 
 <section>
-<h2>WShEx examples</h2>
+<h2>WShEx primer</h2>
 
-<h3>Simple triple constraint</h3>
+<section>
+<h3>Triple constraints</h3>
+<p>A triple constraint contains a declaration about a wikibase statement. It has a predicate, a value expression and a cardinality.</p>
+<ul>
+  <li>The predicate refers to the property. It points to the concept URI of the predicate, which in the case of Wikidata, is <code>&lt;http://www.wikidata.org/entity/P[number]&gt;</code>
+  </li>
+  <li>The value expression can be a shape reference or a node constraint</li>
+  <li>The cardinality can be empty, which means exactly 1, or it can be:
+    <ul>
+      <code>?</code>: zero or one (optional cardinality) 
+      <code>+</code>: one or more 
+      <code>*</code>: zero or more
+      <code>{min,max}</code>: between min and max values
+    </ul>
+  </li>
+</ul>
+
+
 <aside class="example">
 The following example presents a schema which declares a shape Human with a single triple constraint that establishes that the values of property
 <a href="http://www.wikidata.org/entity/P31">P31</a> 
@@ -202,8 +219,121 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 </div>
 </div> 
 </aside>
+</section> <!-- triple constraints -->
 
-<h3>Example with qualifiers</h3>
+<section>
+<h3>Node constraints</h3>
+<p>Node constraints are value expressions that constrain the possible values of a property</p>
+<p>They can be:</p>
+<ul>
+  <li>Value sets</li>
+  <li>Facets</li>
+  <li>Datatype declarations</li>
+<ul>
+
+<section>
+<h4>Value sets</h4>
+ Value sets are marked by <code>[</code> and <code>]</code>, for example 
+     <code>[ :Q5 ]</code> declares that the possible values must be exactly <code>:Q5</code>. 
+
+     <div class="cols">
+      <div class="column2">
+      <p class="caption">WShEx</p>
+      <!-- 
+      PREFIX wd:  <http://www.wikidata.org/entity/>
+      
+      <Human> {
+        :P31 [ :Q5 ]  
+      }
+      -->  
+      <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;Human&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q5 ] &#160;</span></div><div><span style="color: #000000;">}</span></div></div>
+      </div>
+      
+      <div class="column">
+      <p class="caption">Entity Schema (ShEx)</p>    
+      <!--
+      PREFIX wd:  <http://www.wikidata.org/entity/>
+      PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+          
+      <Human> {
+       wdt:P31 [ wd:Q5 ]  
+      }  
+      -->  
+      <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; </span></div><div><span style="color: #000000;">&lt;Human&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 ] &#160;</span></div><div><span style="color: #000000;">}</span></div></div>
+      
+      </div>
+      </div> 
+      </aside>
+
+     It is possible to have several elements in the value set. 
+     For example, the following shape declares that the values of 
+     <abbr title="instance of"><code>:P31</code></abbr> can be either 
+     <abbr title="Human"><code>:Q5</code></abbr> or 
+     <abbr title="Organization"><code>:Q43229</code></abbr> 
+
+     <div class="cols">
+      <div class="column1">
+      <p class="caption">WShEx</p>
+      <!-- 
+      PREFIX wd:  <http://www.wikidata.org/entity/>
+      
+      <Human> {
+        :P31 [ :Q5 :Q43229 ]  
+      }
+      -->  
+      <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;Researcher&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">:</span><span style="color: #000000;">P31 &#160;[ </span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q5 </span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q43229 ] ;</span></div><div><span style="color: #000000;">}</span></div><br></div>
+    
+    </div> <!--column1-->
+      
+    <div class="column">
+      <p class="caption">Entity Schema (ShEx)</p>    
+      <!--
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+<Researcher> {
+ wdt:P31  [ wd:Q5 wd::Q43229 ] ;
+}
+      -->  
+      <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;Researcher&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P31 &#160;[ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 </span><span style="color: #0000ff;">wd::</span><span style="color: #000000;">Q43229 ] ;</span></div><div><span style="color: #000000;">}</span></div><br></div>
+
+      </div> <!-- column2 -->
+      </div> <!-- cols -->
+      </aside>
+</section> <!-- value sets -->
+
+
+<section>
+<h4>Built-in datatypes</h4>  
+<p>WShEx supports the following built-in datatypes which are taken from Wikidata's 
+  <a href="https://www.wikidata.org/wiki/Help:Data_type">built-in datatypes</a></p>
+<ul>
+  <li>CommonsMedia</li>
+  <li>GlobeCoordinate</li>
+  <li>Item</li>
+  <li>Property</li>
+  <li>String</li>
+  <li>MonolingualText</li>
+  <li>ExternalIdentifier</li>
+  <li>Quantity</li>
+  <li>Time</li>
+  <li>URL</li> 
+  <li>MathematicalExpression</li>
+  <li>GeographicShape</li>
+  <li>MusicalNotation</li>
+  <li>TabularData</li>
+  <li>Lexeme</li>
+  <li>Form</li>
+  <li>Sense</li>
+</ul>
+</section> <!-- datatypes -->
+</section> <!-- node constraints -->
+
+<section>
+<h3>Qualifiers</h3>
+<p>One aspect that is different between Wikibase and RDF is the use of <a href="https://www.wikidata.org/wiki/Help:Qualifiers">qualifiers</a>. A qualifier annotates a statement with 
+  further statements about it.</p>
+<p>In WShEx, qualifiers are annotated using <code>{|</code> and <code>|}</code></p>  
 <aside class="example">
   The following example declares the shape &lt;EnglishSite&gt; with a single triple constraint that establishes that the values of property
   <a href="http://www.wikidata.org/entity/P856">P856</a> (official website)
@@ -226,7 +356,7 @@ PREFIX wd:  <http://www.wikidata.org/entity/>
 <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;EnglishSite&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P856 . &#160;{| </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P407 [ </span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q1860 ] |}</span></div><div><span style="color: #000000;">}</span></div><br></div>
 
 
-</div>
+</div> <!-- column1 -->
   
 <div class="column2">
 <p class="caption">Entity Schema (ShEx)</p>      
@@ -245,33 +375,11 @@ PREFIX p: <http://www.wikidata.org/prop/>
 -->  
   <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/qualifier/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/statement/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">p:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; </span></div><div><span style="color: #000000;">&lt;EnglishSite&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">p:</span><span style="color: #000000;">P856 {</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;">P856 . </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;">P407 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q1860 ] </span></div><div><span style="color: #000000;">&#160; }</span></div><div><span style="color: #000000;">}</span></div></div>
 
-</div>
+</div> <!-- column2 -->
   </div> 
   </aside>
 
-<h3>Built-in datatypes</h3>  
-<p>WShEx supports the following built-in datatypes which are taken from Wikidata's 
-  <a href="https://www.wikidata.org/wiki/Help:Data_type">built-in datatypes</a></p>
-<ul>
-  <li>CommonsMedia</li>
-  <li>GlobeCoordinate</li>
-  <li>Item</li>
-  <li>Property</li>
-  <li>String</li>
-  <li>MonolingualText</li>
-  <li>ExternalIdentifier</li>
-  <li>Quantity</li>
-  <li>Time</li>
-  <li>URL</li> 
-  <li>MathematicalExpression</li>
-  <li>GeographicShape</li>
-  <li>MusicalNotation</li>
-  <li>TabularData</li>
-  <li>Lexeme</li>
-  <li>Form</li>
-  <li>Sense</li>
-</ul>
-
+</section> <!-- qualifiers -->
 </section>
 
 <section id="Implementations">

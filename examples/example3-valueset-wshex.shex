@@ -1,0 +1,6 @@
+PREFIX wd:  <http://www.wikidata.org/entity/>
+
+<Researcher> {
+ :P31  [ :Q5 :Q43229 ] ;
+}
+
