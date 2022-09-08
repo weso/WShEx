@@ -1,0 +1,6 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+
+<Researcher> Label (en -> .) {
+ :P31  [ :Q5 ] ;
+}
+

@@ -1,0 +1,6 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+
+<Researcher> {
+ :P31  [ :Q5 ] refs {| :P143 [ :Q328 ] |}
+}
+

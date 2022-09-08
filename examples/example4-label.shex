@@ -1,0 +1,11 @@
+PREFIX wd:  <http://www.wikidata.org/entity/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+<Researcher> {
+ rdfs:label [ @en ] ;
+ wd:P31  [ wdt:Q5 ] ;
+}
+
+
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">rdfs:</span><span style="color: #000000;"> &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><br><div><span style="color: #000000;">&lt;Researcher&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">rdfs:</span><span style="color: #000000;">label [ @en ] ;</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">P31 &#160;[ </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">Q5 ] ;</span></div><div><span style="color: #000000;">}</span></div></div>

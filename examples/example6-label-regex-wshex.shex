@@ -1,0 +1,6 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+  
+<S> Label (en -> /^Douglas/) {
+   :P31  [ :Q5 ] ;
+}
+
