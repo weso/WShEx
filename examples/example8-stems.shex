@@ -1,0 +1,8 @@
+PREFIX wd:  <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX viaf: <https://viaf.org/viaf/>
+          
+<S> {
+ wdt:P214 [ viaf:~ ]  
+}
+

@@ -1,0 +1,10 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+
+<HumansGND> {
+  :P31 [ :Q5 ] 
+  References {| 
+    :P248 [:Q36578 ] ; 
+    :P227 . 
+  |}
+}
+

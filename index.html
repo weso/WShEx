@@ -52,6 +52,12 @@
        </p> 
         <p>WShEx supports those Wikibase features as part of the language, which makes it more concise and usable to describe Wikibase entities.
         </p>
+        <p>[[[#WShExRole]]] presents the role of WShEx sa a language that describes Wikibase entities directly, which is different to Entity Schemas in ShEx, which describes the RDF serializatoin of Wikibase entities. Both languages are complementary and it is possible to convert one to the other.</p>
+
+        <figure id="WShExRole">
+          <img src="images/WShExRole.svg" alt="WShEx Role" />
+          <figcaption>WShEx role describing Wikibase entities</figcaption>
+        </figure>
 
     </section>
 
@@ -239,8 +245,8 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 <ul>
   <li><a href="#labels">Labels, descriptions and aliases</a></li>
   <li><a href="#valueSets">Value sets</a></li>
-  <li><a href="#facets">Facets</a></li>
   <li><a href="#datatypeDecls">Datatype declarations</a></li>
+  <li><a href="#facets">Facets</a></li>
 </ul>
 
 <section>
@@ -397,12 +403,59 @@ PREFIX wd: <http://www.wikidata.org/entity/>
       </div> <!-- column2 -->
       </div> <!-- cols -->
   </aside>
+
+  <section> 
+    <h5 id="Stems">Stems of value sets</h4>
+    <p>A value set can also contain Stems for IRIs</p>
+
+    <aside class="example">
+      The following shape declares that the values of 
+      <abbr title="instance of"><code>:P31</code></abbr> can be either 
+      <abbr title="Human"><code>:Q5</code></abbr> or 
+      <abbr title="Organization"><code>:Q43229</code></abbr>   
+      
+      <div class="cols">
+          <div class="column1">
+          <p class="caption">Stem</p>
+          <!-- 
+          PREFIX :  <http://www.wikidata.org/entity/>
+          PREFIX viaf: <https://viaf.org/viaf/>
+          
+          <S> {
+            :P214 [ viaf:~ ]  
+          }
+          -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">viaf:</span><span style="color: #000000;"> &lt;https://viaf.org/viaf/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">:</span><span style="color: #000000;">P214 [ </span><span style="color: #0000ff;">viaf:</span><span style="color: #000000;">~ ] &#160;</span></div><div><span style="color: #000000;">}</span></div></div>        
+        </div> <!--column1-->
+          
+        <div class="column2">
+          <p class="caption">Entity Schema (ShEx)</p>    
+          <!--
+PREFIX wd:  <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX viaf: <https://viaf.org/viaf/>
+          
+<S> {
+ wdt:P214 [ viaf:~ ]  
+}
+          -->  
+          <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">viaf:</span><span style="color: #000000;"> &lt;https://viaf.org/viaf/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P214 [ </span><span style="color: #0000ff;">viaf:</span><span style="color: #000000;">~ ] &#160;</span></div><div><span style="color: #000000;">}</span></div></div>    
+          </div> <!-- column2 -->
+          </div> <!-- cols -->
+      </aside>
+    
+  </section> <!-- stems -->  
+  
+
 </section> <!-- value sets -->
 
 <section>
 <h4 id="datatypeDecls">Built-in datatypes</h4>  
-<p>WShEx supports the following built-in datatypes which are taken from Wikidata's 
-  <a href="https://www.wikidata.org/wiki/Help:Data_type">built-in datatypes</a></p>
+<p>WShEx will support the <a href="https://www.wikidata.org/wiki/Help:Data_type">built-in datatypes</a> from Wikidata</p>
+
+<p class="note">Support for Built-in datatypes as part of value sets is still work-in-progress. One issue is the support for compact syntax for their values as well as facets.
+</p>
+
 <ul>
   <li>CommonsMedia</li>
   <li>GlobeCoordinate</li>
@@ -427,9 +480,87 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 <section>
 <h4 id="facets">Facets</h4>
 <p>It is possible to constraint the values of datatypes using facets</p>
-<ul>
-  <li>Facets on String values</li>
-</ul>  
+
+<section>
+
+  <h5 id="StringFacets">String facets</h5>
+  <p>WShEx supports the same definition of string facets as ShEx, which can add constraining facets like specifying the <code>Length</code>, <code>MinLength</code>, <code>MaxLength</code> and a regular expression pattern marked by the slach characters (<code>/</code>)</p>
+
+  <aside class="example">
+
+    <div class="cols">
+    <div class="column1">
+    <p class="caption">WShEx</p>  
+    <!-- 
+PREFIX :  <http://www.wikidata.org/entity/>
+          
+<S> {
+ :P1477 /^Douglas/
+}
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">:</span><span style="color: #000000;">P1477 /^Douglas/</span></div><div><span style="color: #000000;">}</span></div><br></div>   
+    
+    </div> <!-- column1 -->
+      
+    <div class="column2">
+    <p class="caption">Entity Schema (ShEx)</p>      
+      <!--
+PREFIX wd:  <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+          
+<S> {
+ wdt:P1477 /^Douglas/
+}
+
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P1477 /^Douglas/</span></div><div><span style="color: #000000;">}</span></div><br></div>    
+     </div> <!-- column2 -->
+    </div> <!-- cols -->
+    </aside>
+    
+</section>
+
+<section>
+  <h5 id="NumericFacets">Numeric facets</h5>
+  <p>WShEx supports facets on numeric values like specifying 
+     <code>MinInclusive</code>, <code>MinExclusive</code>, <code>MaxInclusive</code> and <code>MaxExclusive</code>. 
+     These facets can be applied to numeric values like quantities.
+     <p class="note">Although it is not currently supported, in the future, WShEx could also define numeric facets to compare the values of other datatypes, like time values, for example.</p>
+  </p>
+
+  <aside class="example">
+
+    <div class="cols">
+    <div class="column1">
+    <p class="caption">WShEx</p>  
+    <!-- 
+PREFIX :  <http://www.wikidata.org/entity/>
+          
+<S> {
+ :P2021 MaxInclusive 3
+}
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">:</span><span style="color: #000000;">P2021 </span><span style="color: #0000ff;">MaxInclusive</span><span style="color: #000000;"> </span><span style="color: #098658;">3</span></div><div><span style="color: #000000;">}</span></div></div>
+
+    </div> <!-- column1 -->
+      
+    <div class="column2">
+    <p class="caption">Entity Schema (ShEx)</p>      
+      <!--
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+          
+<S> {
+ wdt:P2021 MaxInclusive 3
+}
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P2021 </span><span style="color: #0000ff;">MaxInclusive</span><span style="color: #000000;"> </span><span style="color: #098658;">3</span></div><div><span style="color: #000000;">}</span></div><br><br></div>
+
+  </div> <!-- column2 -->
+    </div> <!-- cols -->
+    </aside>
+
+</section>
+
 </section>  
 
 </section> <!-- node constraints -->
@@ -447,7 +578,8 @@ PREFIX wd: <http://www.wikidata.org/entity/>
   with the value <a href="http://www.wikidata.org/entity/Q1860">Q1860</a> (English).
   
   Notice that WShEx uses <code>{|</code> and <code>|}</code> to describe Wikibase qualifiers.
-  
+
+<aside class="example">
 <div class="cols">
 <div class="column1">
 <p class="caption">WShEx</p>  
@@ -480,11 +612,86 @@ PREFIX p: <http://www.wikidata.org/prop/>
 -->  
   <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/qualifier/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/statement/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">p:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; </span></div><div><span style="color: #000000;">&lt;EnglishSite&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">p:</span><span style="color: #000000;">P856 {</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;">P856 . </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;">P407 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q1860 ] </span></div><div><span style="color: #000000;">&#160; }</span></div><div><span style="color: #000000;">}</span></div></div>
 
+ </div> <!-- column2 -->
+</div> <!-- cols -->
+</aside>
+
+</section> <!-- qualifiers -->
+
+
+<h3 id="references">References</h3>
+
+<p>References enable authors to associate reference information 
+   about statements. 
+   References are similar to qualifiers, but the wikibase data model allows references to be grouped, so for each statement, it is possible to have a list of references. 
+
+<p>In WShEx, references are added after the keyword <code>References</code> and each property specification is annotated using <code>{|</code> and <code>|}</code></p>  
+
+<aside class="example">
+  The following example declares the shape &lt;HumansGND&gt; 
+   which represents items which have been declared to be instances of Human <code>Q5</code> but that those statements contain reference information that declares that they have been <em>stated in</em> (<code>P248</code>) <em>German National Library</em> (<code>Q36578</code>) and contain also a <em>GND ID</em> (<code>P227</code>)
+
+<div class="cols">
+<div class="column1">
+<p class="caption">WShEx</p>  
+<!-- 
+PREFIX :  <http://www.wikidata.org/entity/>
+
+<Human> {
+  :P31 [ :Q5 ] References {| 
+    :P248 [:Q36578 ] ; 
+    :P227 . |}
+}
+-->  
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><br><div><span style="color: #000000;">&lt;HumansGND&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q5 ] </span></div><div><span style="color: #000000;">&#160; References {| </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P248 [</span><span style="color: #0000ff;">:</span><span style="color: #000000;">Q36578 ] ; </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P227 . </span></div><div><span style="color: #000000;">&#160; |}</span></div><div><span style="color: #000000;">}</span></div></div>
+
+</div> <!-- column1 -->
+  
+<div class="column2">
+<p class="caption">Entity Schema (ShEx)</p>      
+  <!--
+PREFIX wd:   <http://www.wikidata.org/entity/>
+PREFIX pq:   <http://www.wikidata.org/prop/qualifier/>
+PREFIX ps:   <http://www.wikidata.org/prop/statement/>
+PREFIX p:    <http://www.wikidata.org/prop/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+    
+<HumansGND> {
+  wdt:P31 [ wd:Q5 ]  ;
+  p:31 {
+    ps:P31 [ wd:Q5 ]  ;
+    prov:wasDerivedFrom @<References>
+  }
+}
+
+<References> {
+  pr:P248 [ wd:Q36578 ] ; 
+  pr:P227 .   
+}
+-->  
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/prop/qualifier/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/prop/statement/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">p:</span><span style="color: #000000;"> &#160; &#160;&lt;http://www.wikidata.org/prop/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pr:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/reference/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">prov:</span><span style="color: #000000;"> &lt;http://www.w3.org/ns/prov#&gt;</span></div><div><span style="color: #000000;">&#160; &#160; </span></div><div><span style="color: #000000;">&lt;HumansGND&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 ] &#160;;</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">p:</span><span style="color: #000000;">31 {</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 ] &#160;;</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">prov:</span><span style="color: #000000;">wasDerivedFrom @&lt;References&gt;</span></div><div><span style="color: #000000;">&#160; }</span></div><div><span style="color: #000000;">}</span></div><br><div><span style="color: #000000;">&lt;References&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">pr:</span><span style="color: #000000;">P248 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q36578 ] ; </span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">pr:</span><span style="color: #000000;">P227 . &#160; </span></div><div><span style="color: #000000;">}</span></div><br><br></div>
+
 </div> <!-- column2 -->
   </div> 
   </aside>
 
-</section> <!-- qualifiers -->
+</section> <!-- references -->
+
+</section>
+
+<section id="Semantics">
+  <h2>Semantic specification</h2>
+  
+  <p class="note">The semantic specification is still work in progress. 
+    A first draft of a semantic specification based on a subset of WShEx has been 
+    published in the paper presented at Wikidata Workshop 2022: 
+    <a href="https://arxiv.org/abs/2208.02697">WShEx: A language to describe and validate Wikibase entities</a></p>
+</section>
+
+<section id="Grammar">
+  <h2>WShEx grammar</h2>
+  <p class="note">An ANTLR Grammar of the compact syntax of current WShEx is available at: <a href="https://github.com/weso/shex-s/blob/master/modules/wshex/src/main/antlr4/WShExDoc.g4">WShExDoc.g4</a></p>
 </section>
 
 <section id="Implementations">
@@ -494,6 +701,7 @@ PREFIX p: <http://www.wikidata.org/prop/>
       </li>
     </ul>
 </section>
+<section id="tof" class="appendix"></section>
   
   </body>
 </html>

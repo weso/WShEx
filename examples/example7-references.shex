@@ -1,0 +1,21 @@
+PREFIX wd:   <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX pq:   <http://www.wikidata.org/prop/qualifier/>
+PREFIX ps:   <http://www.wikidata.org/prop/statement/>
+PREFIX p:    <http://www.wikidata.org/prop/>
+PREFIX pr: <http://www.wikidata.org/prop/reference/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+    
+<HumansGND> {
+  wdt:P31 [ wd:Q5 ]  ;
+  p:31 {
+    ps:P31 [ wd:Q5 ]  ;
+    prov:wasDerivedFrom @<References>
+  }
+}
+
+<References> {
+  pr:P248 [ wd:Q36578 ] ; 
+  pr:P227 .   
+}
+

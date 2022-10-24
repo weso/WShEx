@@ -1,0 +1,7 @@
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+          
+<S> {
+ wdt:P2021 MaxInclusive 3
+}
+
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P2021 </span><span style="color: #0000ff;">MaxInclusive</span><span style="color: #000000;"> </span><span style="color: #098658;">3</span></div><div><span style="color: #000000;">}</span></div><br><br></div>

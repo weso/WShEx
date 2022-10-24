@@ -1,0 +1,6 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+          
+<S> {
+ :P1477 /^Douglas/
+}
+

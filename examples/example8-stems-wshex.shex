@@ -1,0 +1,9 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+PREFIX viaf: <https://viaf.org/viaf/>
+          
+<S> {
+ :P214 [ viaf:~ ]  
+}
+
+
+
