@@ -1,0 +1,9 @@
+PREFIX schema: <http://schema.org/>
+          
+<S> {
+ ^schema:about {
+    schema:inLanguage "en"
+ }
+}
+
+

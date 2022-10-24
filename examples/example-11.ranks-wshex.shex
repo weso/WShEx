@@ -1,0 +1,5 @@
+PREFIX :  <http://www.wikidata.org/entity/>
+          
+<S> {
+ :P2021 MaxInclusive 3
+}

@@ -673,10 +673,108 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/prop/qualifier/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/prop/statement/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">p:</span><span style="color: #000000;"> &#160; &#160;&lt;http://www.wikidata.org/prop/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pr:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/reference/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">prov:</span><span style="color: #000000;"> &lt;http://www.w3.org/ns/prov#&gt;</span></div><div><span style="color: #000000;">&#160; &#160; </span></div><div><span style="color: #000000;">&lt;HumansGND&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 ] &#160;;</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">p:</span><span style="color: #000000;">31 {</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;">P31 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q5 ] &#160;;</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">prov:</span><span style="color: #000000;">wasDerivedFrom @&lt;References&gt;</span></div><div><span style="color: #000000;">&#160; }</span></div><div><span style="color: #000000;">}</span></div><br><div><span style="color: #000000;">&lt;References&gt; {</span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">pr:</span><span style="color: #000000;">P248 [ </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;">Q36578 ] ; </span></div><div><span style="color: #000000;">&#160; </span><span style="color: #0000ff;">pr:</span><span style="color: #000000;">P227 . &#160; </span></div><div><span style="color: #000000;">}</span></div><br><br></div>
 
 </div> <!-- column2 -->
-  </div> 
-  </aside>
+</div> 
+</aside>
 
 </section> <!-- references -->
+
+<section id="OtherFeatures">
+  <h2>Other features</h2>
+  <p>In this section we include some features which we may include in WShEx but have not been implemented yet</p>
+
+  <section id="Ranks">
+    <h3>Ranks</h3>
+    <p>WShEx may add the keywords <code>NormalRank</code>, <code>PreferredRank</code> and <code>DeprecatedRank</code> to declare the ranks of statements</p>
+
+    <aside class="example">
+      The following example declares the shape &lt;S&gt; 
+       which represents items which have been declared to several statements for property <em>population</em> <code>P1082</code> with <code>NormalRank</code> and two qualifiers <em>determination method</em> (<code>P459</code> and <em>Point in time</em> (<code>P585</code>))
+    
+    <div class="cols">
+    <div class="column1">
+    <p class="caption">WShEx</p>  
+    <!-- 
+PREFIX :  <http://www.wikidata.org/entity/>
+          
+<S> {
+ :P1082 . {| :P459 . ; :P585 . |} + NormalRank ;
+}
+
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">:</span><span style="color: #000000;"> &#160;&lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">:</span><span style="color: #000000;">P1082 . {| </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P459 . ; </span><span style="color: #0000ff;">:</span><span style="color: #000000;">P585 . |} + NormalRank ;</span></div><div><span style="color: #000000;">}</span></div></div>
+
+    </div> <!-- column1 -->
+      
+    <div class="column2">
+    <p class="caption">Entity Schema (ShEx)</p>      
+      <!--
+PREFIX wd:   <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX pq:   <http://www.wikidata.org/prop/qualifier/>
+PREFIX ps:   <http://www.wikidata.org/prop/statement/>
+PREFIX p:    <http://www.wikidata.org/prop/>
+
+          
+<S> {
+ p:P1082 . @<Qualifier> + 
+}
+
+<Qualifier> { 
+    ps:P1082 . ;
+    pq:P459 . ; 
+    pq:P585 . 
+    wikibase:rank wikibase:NormalRank ;
+}  
+
+    -->  
+<div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wd:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/entity/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">wdt:</span><span style="color: #000000;"> &lt;http://www.wikidata.org/prop/direct/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/prop/qualifier/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;"> &#160; &lt;http://www.wikidata.org/prop/statement/&gt;</span></div><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">p:</span><span style="color: #000000;"> &#160; &#160;&lt;http://www.wikidata.org/prop/&gt;</span></div><br><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;</span><span style="color: #0000ff;">p:</span><span style="color: #000000;">P1082 . @&lt;Qualifier&gt; + </span></div><div><span style="color: #000000;">}</span></div><br><div><span style="color: #000000;">&lt;Qualifier&gt; { </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">ps:</span><span style="color: #000000;">P1082 . ;</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;">P459 . ; </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">pq:</span><span style="color: #000000;">P585 . </span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">wikibase:</span><span style="color: #000000;">rank </span><span style="color: #0000ff;">wikibase:</span><span style="color: #000000;">NormalRank ;</span></div><div><span style="color: #000000;">} &#160;</span></div><br></div>
+    
+    </div> <!-- column2 -->
+    </div> 
+    </aside>    
+
+  </section> <!-- ranks -->
+
+  <section id="Sitelinks">
+    <h3>Sitelinks</h3>
+    <p>WShEx may add support to describe the possible sitelinks that items can have</p>
+
+    <aside class="example">
+    
+    <div class="cols">
+    <div class="column1">
+    <p class="caption">WShEx</p>  
+    <!-- 
+PREFIX schema: <http://schema.org/>
+          
+<S> SiteLinks [ @en ]
+
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">schema:</span><span style="color: #000000;"> &lt;http://schema.org/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; SiteLinks [ @en ]</span></div><br></div>
+    
+    </div> <!-- column1 -->
+      
+    <div class="column2">
+    <p class="caption">Entity Schema (ShEx)</p>      
+      <!--
+PREFIX schema: <http://schema.org/>
+          
+<S> {
+ ^schema:about {
+    schema:inLanguage "en"
+ }
+}
+    -->  
+    <div style="color: #000000;background-color: #ffffff;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #0000ff;">PREFIX</span><span style="color: #000000;"> </span><span style="color: #0000ff;">schema:</span><span style="color: #000000;"> &lt;http://schema.org/&gt;</span></div><div><span style="color: #000000;">&#160; &#160; &#160; &#160; &#160; </span></div><div><span style="color: #000000;">&lt;S&gt; {</span></div><div><span style="color: #000000;">&#160;^</span><span style="color: #0000ff;">schema:</span><span style="color: #000000;">about {</span></div><div><span style="color: #000000;">&#160; &#160; </span><span style="color: #0000ff;">schema:</span><span style="color: #000000;">inLanguage </span><span style="color: #a31515;">"en"</span></div><div><span style="color: #000000;">&#160;}</span></div><div><span style="color: #000000;">}</span></div><br></div>
+
+    </div> <!-- column2 -->
+    </div> 
+    </aside>    
+
+  </section> <!-- siteLinks-->
+
+
+</section> <!-- other features -->
 
 </section>
 
